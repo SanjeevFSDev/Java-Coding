@@ -1,0 +1,15 @@
+# Ignore compiled class files
+*.class
+
+# Ignore STS/Eclipse specific files
+.classpath
+.project
+.settings/
+
+# Ignore build directories
+bin/
+target/
+
+# Ignore IDE-specific files
+.idea/
+*.iml
