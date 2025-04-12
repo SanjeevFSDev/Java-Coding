@@ -1,10 +1,14 @@
 package InterviewQuestions;
 
+import java.util.Arrays;
+
 public class SecondLargest {
 
 	public static void main(String[] args) {
 
-		int [] intArray = {1, 2, 5, 6, 9, 88, 69, 105};
+		int [] intArray = {1, 2, 5, 6, 9, 88, 69, 105, 104};
+		
+		Arrays.sort(intArray);
 		
 		int largest = Integer.MIN_VALUE;
 		int secondLargest = Integer.MIN_VALUE;

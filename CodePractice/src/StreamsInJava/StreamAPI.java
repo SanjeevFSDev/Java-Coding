@@ -65,7 +65,7 @@ public class StreamAPI {
 		
 		System.out.println("Get the second lowest number : " + list5.stream().sorted().skip(1).findFirst().get());
 		
-		List<String> names = Arrays.asList("Sanjeev", "Priti", "Yug", "Babu", "sanjeev", "Yug", "Yug");
+		List<String> names = Arrays.asList("Sanjeev", "Priti", "Yug", "Babu", "sanjeev", "Yug", "Yug", "Babu");
 		
 		System.out.println("Names start with S : " + names.stream().filter(str -> str.startsWith("S") || str.startsWith("s")).map(n->n).toList());
 		
@@ -73,7 +73,7 @@ public class StreamAPI {
 		System.out.println("Print duplicate strings using streams : " +
 				names.stream().filter(str -> Collections.frequency(names, str) > 1).distinct().toList());
 		
-		names.stream().filter(str -> Collections.frequency(names, str) > 1).distinct().forEach(System.out :: println);
+		names.stream().filter(str -> Collections.frequency(names, str) > 1).distinct().forEach((name) -> System.out.print(name + " "));
 		
 	}
 

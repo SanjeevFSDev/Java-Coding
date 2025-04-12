@@ -1,6 +1,7 @@
 package StreamsInJava;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
@@ -67,6 +68,14 @@ public class ProductStream {
 		for(ProductStream p : products) {
 			System.out.println("Sorted products on name and price : " +p.pName + " " +p.pPrice);
 		}
+		
+		//Interview
+		List<String> inputList = Arrays.asList("apple", "dog", "banana", "cat", "grape");
+
+        List<String> sortedList = inputList.stream().sorted(Comparator.comparingInt(String::length)
+                .thenComparing(Comparator.naturalOrder())).toList();
+
+        System.out.println(sortedList); // Output: [cat, dog, apple, grape, banana]
 		
 	}
 

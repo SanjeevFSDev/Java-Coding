@@ -12,7 +12,7 @@ public class CharCount {
 		for(char ch : chArray) {
 			if(!String.valueOf(ch).isBlank()) {
 				if(charMap.containsKey(ch)) {
-					int count = charMap.getOrDefault(ch, 0);
+					int count = charMap.get(ch);
 					charMap.put(ch, count + 1);
 				}
 				else {
