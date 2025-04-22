@@ -72,7 +72,7 @@ public class ProductStream {
 		//Interview
 		List<String> inputList = Arrays.asList("apple", "dog", "banana", "cat", "grape");
 
-        List<String> sortedList = inputList.stream().sorted(Comparator.comparingInt(String::length)
+        List<String> sortedList = inputList.stream().sorted(Comparator.comparing(String::length)
                 .thenComparing(Comparator.naturalOrder())).toList();
 
         System.out.println(sortedList); // Output: [cat, dog, apple, grape, banana]

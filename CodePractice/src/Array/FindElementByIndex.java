@@ -1,4 +1,5 @@
 package Array;
+
 public class FindElementByIndex {
 
     // Method to get the element at a given index
@@ -12,7 +13,7 @@ public class FindElementByIndex {
 
     public static void main(String[] args) {
         int[] array = {10, 20, 30, 40, 50};
-        int index = 4; // Example index
+        int index = 2; // Example index
 
         try {
             int element = findElementAtIndex(array, index);

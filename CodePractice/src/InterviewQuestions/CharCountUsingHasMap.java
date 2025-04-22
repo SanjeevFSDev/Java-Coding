@@ -3,7 +3,7 @@ package InterviewQuestions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CharCount {
+public class CharCountUsingHasMap {
 
 	public static void getCharCount(String name) {
 		Map<Character, Integer> charMap = new HashMap<>();

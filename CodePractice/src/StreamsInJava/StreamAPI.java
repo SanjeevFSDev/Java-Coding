@@ -3,6 +3,8 @@ package StreamsInJava;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamAPI {
@@ -38,6 +40,15 @@ public class StreamAPI {
 		System.out.println("Print numbers starts with prefix 2 using streams : " +
 				list3.stream().map(num -> String.valueOf(num)).filter(num -> num.startsWith("2") || num.startsWith("-2"))
 				.map(num -> Integer.parseInt(num)).toList());
+		
+		int [] intArray = {22, 232, 312, 412, -213, 116};
+		
+		//Print numbers starts with prefix 2 using streams
+		System.out.println("Print numbers starts with prefix 2 using streams : " +
+		Arrays.stream(intArray).boxed().map(s -> s + "").filter(s -> s.startsWith("2") || s.startsWith("-2"))
+		.map(s -> s).toList());
+		
+		System.out.println(Arrays.stream(intArray).boxed().map(n -> n*n).toList());
 		
 		//Print duplicate numbers using streams(Interview)
 		List<Integer> list4 = Arrays.asList(2, 3, 2, 3, 1, 5, 7, 10, 1, 9, 101);
@@ -75,6 +86,10 @@ public class StreamAPI {
 		
 		names.stream().filter(str -> Collections.frequency(names, str) > 1).distinct().forEach((name) -> System.out.print(name + " "));
 		
+		String [] nameValues = {"Sanjeev", "Priti", "Yug", "Babu", "sanjeev", "Yug", "Yug", "Babu"};
+		
+		System.out.println(Arrays.stream(nameValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        .entrySet().stream().filter(e -> e.getValue() > 1).map(Map.Entry::getKey).toList());
 	}
 
 }

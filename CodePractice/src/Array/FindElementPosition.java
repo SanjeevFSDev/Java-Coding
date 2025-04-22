@@ -1,5 +1,7 @@
 package Array;
 
+import java.util.Arrays;
+
 public class FindElementPosition {
 
     // Method to find the position of element k in the array
@@ -22,6 +24,9 @@ public class FindElementPosition {
         } else {
             System.out.println("Element " + k + " is not found in the array.");
         }
+        
+        //By Using Stream API
+        System.out.println(Arrays.stream(array).boxed().filter(n -> n == k).findFirst().isPresent());
     }
 }
 

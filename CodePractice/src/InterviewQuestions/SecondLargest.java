@@ -1,6 +1,7 @@
 package InterviewQuestions;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SecondLargest {
 
@@ -20,7 +21,10 @@ public class SecondLargest {
 			}
 		}
 		System.out.println("Second Largest Value : " + secondLargest);
-
+		
+		//By Using Stream API
+		Integer secondLargestValue = Arrays.stream(intArray).boxed().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+		System.out.println("Second Largest Value Using Stream API : " + secondLargestValue);
 	}
 
 }

@@ -158,6 +158,10 @@ public class Employee
 	    Employee emp = employeeList.stream().max((e1, e2) -> e1.getAge() > e2.getAge() ? 1 : -1).get();
 	    System.out.println("The oldest employee in the organization : " +emp.getName() + " his age is " +emp.getAge() + " and department is " +emp.getDepartment());
 	    System.out.println("--------------------------------------");
+	    
+	    //All Department names with delimiter :::
+	    String empDepartments = employeeList.stream().map(Employee :: getDepartment).collect(Collectors.joining(":::"));
+	    System.out.println("Department names with delimiter : " +empDepartments);
 
     }
 

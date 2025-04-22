@@ -26,7 +26,11 @@ public class LongestUniqueSubstringOptimized {
     }
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
-        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(s));
+        String s1 = "abcabcbb";
+        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(s1));
+        String s2 = "javavavaxyz";
+        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(s2));
+        String s3 = "pwwkew";
+        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(s3));
     }
 }
