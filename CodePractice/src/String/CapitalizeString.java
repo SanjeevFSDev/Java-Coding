@@ -15,7 +15,6 @@ public class CapitalizeString {
 		String capitalizeString = "";
 		
 		for (String w : word) {
-			System.out.println(w);
 			if(!w.isEmpty()) {
 				String first = w.substring(0,1);
 				String afterFisrt = w.substring(1);

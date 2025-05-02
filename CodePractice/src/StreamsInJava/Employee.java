@@ -1,9 +1,11 @@
 package StreamsInJava;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Employee
@@ -86,9 +88,9 @@ public class Employee
 	    System.out.println("--------------------------------------");
 	    
 	    //Get the details of youngest male employee in the product development department?
-	    Employee youngestMaleEmployee = employeeList.stream().filter(e1 -> e1.getGender().equals("Male") && e1.getDepartment().equals("Product Development"))
-	    		.min((e1, e2) -> e1.getAge() > e2.getAge() ? 1 : -1).get();
-	    System.out.println("The youngest male employee in the product development department : " +youngestMaleEmployee.getName());
+	    String youngestMaleEmployeeName = employeeList.stream().filter(e1 -> e1.getGender().equals("Male") && e1.getDepartment().equals("Product Development"))
+	    		.min((e1, e2) -> e1.getAge() > e2.getAge() ? 1 : -1).map(e -> e.getName()).get();
+	    System.out.println("The youngest male employee in the product development department : " +youngestMaleEmployeeName);
 	    System.out.println("--------------------------------------");
 	    
 	    //Who has the most working experience in the organization?
@@ -96,6 +98,8 @@ public class Employee
 	    System.out.println("The most working experience in the organization : " +mostWorkingExperienceEmployee.getName());
 	    
 	    System.out.println("The most working experience in the organization : " +employeeList.stream().sorted((e1, e2) -> e1.getYearOfJoining() - e2.getYearOfJoining()).findFirst().get());
+	    
+	    System.out.println("The most working experience in the organization : " +employeeList.stream().sorted(Comparator.comparing(Employee :: getYearOfJoining)).map(e -> e.getName()).findFirst().get());
 	    
 	    //System.out.println("The most working experience in the organization : " +employeeList.stream().map(e1 -> e1.getYearOfJoining()).sorted().findFirst().get());
 	    System.out.println("--------------------------------------");
@@ -113,6 +117,8 @@ public class Employee
 	    
 		//List down the names of all employees in each department?
 	    Map<String, List<Employee>> employeesInEachDepartment = employeeList.stream().collect(Collectors.groupingBy(Employee :: getDepartment));
+//	    employeesInEachDepartment.forEach((departments, employeeLists) -> {System.out.println("The department is : " +departments); employeeLists
+//	    	.forEach(emp -> System.out.println(emp.getName()));});
 	    for(Map.Entry<String, List<Employee>> entryMap : employeesInEachDepartment.entrySet()) {
 	    	System.out.println("--------------------------------------");
 	    	System.out.println("The department is : " +entryMap.getKey());
@@ -135,6 +141,12 @@ public class Employee
 	    
 		//Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years?
 	    Map<Boolean, List<Employee>> partitionEmployeesByAge = employeeList.stream().collect(Collectors.partitioningBy(e1 -> e1.getAge() > 25));
+//	    System.out.println("Employee age is more than 25 years");
+//	    partitionEmployeesByAge.get(true).forEach(emp -> System.out.println(emp.getName())); 
+//	    
+//	    System.out.println("Employees are younger or equal to 25 years");
+//	    partitionEmployeesByAge.get(false).forEach(emp -> System.out.println(emp.getName())); 
+	    
 	    for(Map.Entry<Boolean, List<Employee>> mapEntry : partitionEmployeesByAge.entrySet()) {
 	    	System.out.println("--------------------------------------");
 	    	if(mapEntry.getKey()) {
@@ -162,7 +174,18 @@ public class Employee
 	    //All Department names with delimiter :::
 	    String empDepartments = employeeList.stream().map(Employee :: getDepartment).collect(Collectors.joining(":::"));
 	    System.out.println("Department names with delimiter : " +empDepartments);
+	    
+	    System.out.println("--------------------------------------");
+	    
+	    //Find the max salary Department wise
+	    Map<String, Optional<Employee>> maxSalaryByDepts = employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+                Collectors.maxBy((e1, e2) -> e1.salary > e2.salary ? 1 : -1)));
+	    
+	    Map<String, Optional<Employee>> maxSalaryByDept = employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+	                Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
 
+    	maxSalaryByDept.forEach((dept, empOpt) -> empOpt.ifPresent(emps -> 
+	                System.out.println("Department: " + dept + ", Employee: " + emps.getName() + ", Salary: " + emps.getSalary())));
     }
 
     public int getId() 

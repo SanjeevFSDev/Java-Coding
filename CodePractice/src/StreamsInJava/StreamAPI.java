@@ -90,6 +90,11 @@ public class StreamAPI {
 		
 		System.out.println(Arrays.stream(nameValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
         .entrySet().stream().filter(e -> e.getValue() > 1).map(Map.Entry::getKey).toList());
+		
+		System.out.println(Arrays.stream(nameValues).filter(str -> Collections.frequency(names, str) > 1).distinct().toList());
+		
+		System.out.println(names.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+				.entrySet().stream().filter(entry -> entry.getValue() > 1).map(entry -> entry.getKey()).toList());
 	}
 
 }

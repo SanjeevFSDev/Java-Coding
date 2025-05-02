@@ -17,8 +17,8 @@ public class AnagramCheckWithStreams {
 
     public static boolean areAnagramsUsingStreams(String str1, String str2) {
         // Normalize the strings: remove whitespace and convert to lowercase
-        String s1 = str1.replaceAll("\\s", "").toLowerCase();
-        String s2 = str2.replaceAll("\\s", "").toLowerCase();
+        String s1 = str1.replaceAll("\\s+", "").toLowerCase();
+        String s2 = str2.replaceAll("\\s+", "").toLowerCase();
 
         if (s1.length() != s2.length()) {
             return false;

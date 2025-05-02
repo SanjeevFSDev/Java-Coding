@@ -11,9 +11,11 @@ public class CharCountUsingStreamAPI {
 		
 		String str = "java concept of the day";
 		
+		String vowels = "aeiou";
+		
 		// Using Java 8 Streams to count each character
         Map<Character, Long> charCount = str.chars()
-                .mapToObj(c -> (char) c).filter(c -> c != ' ') // Convert int to Character and remove spaces
+                .mapToObj(c -> (char) c).filter(c -> !String.valueOf(c).isBlank()) // Convert int to Character and remove spaces
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
                // .collect(Collectors.groupingBy(Object :: toString, Collectors.counting()));
         
@@ -22,7 +24,7 @@ public class CharCountUsingStreamAPI {
 
         // Using Java 8 Streams to count each vowel character
         Map<Character, Long> vowelCharCount = str.chars()
-                .mapToObj(c -> (char) c).filter(c -> c != ' ' && (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') ) // Convert int to Character, remove spaces and check vowels
+                .mapToObj(c -> (char) c).filter(c -> c != ' ' && (vowels.indexOf(c) != -1)) // Convert int to Character, remove spaces and check vowels
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
                // .collect(Collectors.groupingBy(Object :: toString, Collectors.counting()));
         
