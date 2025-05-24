@@ -16,26 +16,26 @@ public class RunLengthEncoding {
 	private static String encodeConsecutive(String str) {
 		if(str == null || str.isBlank()) return "";
 		
-		List<CharGroup> group = new ArrayList<>();
+		List<CharGroup> groupList = new ArrayList<>();
 		
 		char[] charArray = str.toCharArray();
 		
 		char prev = charArray[0];
 		int count = 1;
 		
-		for(int i=0; i<charArray.length; i++) {
+		for(int i=1; i<charArray.length; i++) {
 			if(charArray[i] == prev) {
 				count++;	
 			}
 			else {
-				group.add(new CharGroup(prev, count));
+				groupList.add(new CharGroup(prev, count));
 				prev = charArray[i];
 				count = 1;
 			}
 		}
-		group.add(new CharGroup(prev, count));
+		groupList.add(new CharGroup(prev, count));
 		
-		return group.stream().map(groups -> groups.ch + String.valueOf(groups.count)).collect(Collectors.joining());
+		return groupList.stream().map(group -> group.ch + String.valueOf(group.count)).collect(Collectors.joining());
 		
 	}
 	

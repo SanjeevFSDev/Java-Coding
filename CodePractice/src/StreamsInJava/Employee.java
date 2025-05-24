@@ -49,7 +49,14 @@ public class Employee
 	    employeeList.add(new Employee(255, "Ali Baig", 23, "Male", "Infrastructure", 2018, 12700.0));
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
-    
+	    
+	    //INTERVIEW EY: WAP to print the names of all Departments which have more than 3 male Employees?
+	    System.out.println(employeeList.stream().filter(emp -> emp.getGender().equals("Male")).collect(Collectors.groupingBy(Employee :: getDepartment, Collectors.counting()))
+		.entrySet().stream().filter(entry -> entry.getValue() >= 3).map(entry -> entry.getKey()).collect(Collectors.toList()));
+	    
+	    //INTERVIEW Mphasis: WAP to print the names of all Employees group by Departments?
+	    System.out.println(employeeList.stream().collect(Collectors.groupingBy(Employee :: getDepartment, Collectors.toList())));
+	    
 	    //How many male and female employees are there in the organization?
 	    Map<String, Long> employeeGenderWiseMap = employeeList.stream().collect(Collectors.groupingBy(Employee :: getGender, Collectors.counting()));
 	    System.out.println("Male and female employees are there in the organization : " +employeeGenderWiseMap);
@@ -97,7 +104,7 @@ public class Employee
 	    Employee mostWorkingExperienceEmployee = employeeList.stream().min((e1, e2) -> e1.getYearOfJoining() > e2.getYearOfJoining() ? 1 : -1).get();
 	    System.out.println("The most working experience in the organization : " +mostWorkingExperienceEmployee.getName());
 	    
-	    System.out.println("The most working experience in the organization : " +employeeList.stream().sorted((e1, e2) -> e1.getYearOfJoining() - e2.getYearOfJoining()).findFirst().get());
+	    System.out.println("The most working experience in the organization : " +employeeList.stream().sorted((e1, e2) -> e1.getYearOfJoining() - e2.getYearOfJoining()).toList());
 	    
 	    System.out.println("The most working experience in the organization : " +employeeList.stream().sorted(Comparator.comparing(Employee :: getYearOfJoining)).map(e -> e.getName()).findFirst().get());
 	    

@@ -2,6 +2,7 @@ package InterviewQuestions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CharCountUsingHasMap {
 
@@ -22,6 +23,16 @@ public class CharCountUsingHasMap {
 		}
 		
 		System.out.println(name + " : " + charMap);
+		
+		//To convert output from {a=2, s=2, t=4, e=2, v=1, g=1, i=1, j=1, n=1} to {a:2,s:2,t:4,e:2,v:1,g:1,i:1,j:1,n:1}
+		String result = charMap.entrySet().stream()
+		        .map(entry -> entry.getKey() + ":" + entry.getValue())
+		        .collect(Collectors.joining(",", "{", "}"));
+		
+		//OR
+		System.out.println(charMap.toString().replace("=", ":"));
+		
+		System.out.println(result);
 		
 		//If Interviewer ask to print char more than 1
 		for(Map.Entry<Character, Integer> mapEntry : charMap.entrySet()) {

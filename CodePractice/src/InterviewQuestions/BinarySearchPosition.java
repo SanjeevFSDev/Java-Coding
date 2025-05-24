@@ -6,7 +6,7 @@ public class BinarySearchPosition  {
         int low = 0, high = arr.length - 1;
 
         while (low <= high) {
-            int mid = (low + high) / 2; // Calculate mid index
+            int mid = low + (high - low) / 2; // Calculate mid index
             System.out.println(mid);
             if (arr[mid] == k) {
                 return mid + 1; // Return position (1-based index)

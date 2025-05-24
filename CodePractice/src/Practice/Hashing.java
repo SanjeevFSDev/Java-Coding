@@ -104,10 +104,17 @@ public class Hashing {
 		System.out.println("Move all zero’s to beginning of array : " +Arrays.stream(arrys).boxed().collect(Collectors.partitioningBy(i -> i != 0)).values()
 				.stream().flatMap(i -> i.stream()).toList());
 		
+		//INTERVIEW (Deloitte)
 		//Write a stream program to move all zero’s to ending of array
 		//Output : [2, 3, 10, 14, 4, 5, 0, 0, 0, 0]
 		System.out.println("Move all zero’s to ending of array : " +Arrays.stream(arrys).boxed().collect(Collectors.partitioningBy(i -> i == 0)).values()
 				.stream().flatMap(i -> i.stream()).toList());
+		
+		//INTERVIEW (Tech Mahindra)
+		int[][] input = {{1,2}, {3,4}, {5,6}};
+    	//[1, 2, 3, 4, 5, 6]
+    	List<Integer> result = Arrays.stream(input).flatMapToInt(Arrays::stream).boxed().collect(Collectors.toList());
+    	System.out.println(result);	
 	}
 
 }
